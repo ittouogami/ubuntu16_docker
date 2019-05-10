@@ -1,5 +1,6 @@
 docker run -ti --rm \
     --net host \
+    --privileged \
     -e LOCAL_UID=$(id -u $USER) \
     -e LOCAL_GID=$(id -g $USER) \
     -e USER=$USER \
