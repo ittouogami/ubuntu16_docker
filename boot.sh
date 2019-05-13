@@ -7,5 +7,5 @@ docker run -ti --rm \
     -e UART_GROUP_ID=20 \
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix/:/tmp/.X11-unix \
-    -v /home/hara/docker/hara:/home/hara \
+    -v $HOME/docker/userhome:$HOME \
     ubuntu16 /bin/bash
