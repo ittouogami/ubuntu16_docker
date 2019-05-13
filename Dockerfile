@@ -26,4 +26,4 @@ ENV LC_ALL ja_JP.UTF-8
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-SHELL ["/bin/bash", "-l"]
+CMD ["/bin/bash", "-l"]
