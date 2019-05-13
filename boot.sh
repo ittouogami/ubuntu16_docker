@@ -8,4 +8,5 @@ docker run -ti --rm \
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix/:/tmp/.X11-unix \
     -v $HOME/docker/userhome:$HOME \
+    -w $HOME \
     ubuntu16 /bin/bash
