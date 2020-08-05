@@ -23,6 +23,7 @@ RUN \
     lxappearance \
     nautilus \
     vim \
+    ctags \
     gnome-terminal \
     canberra-gtk* \
     language-pack-ja \
