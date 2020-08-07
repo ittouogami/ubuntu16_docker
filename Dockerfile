@@ -22,7 +22,6 @@ RUN \
     fonts-droid-fallback \
     lxappearance \
     nautilus \
-    vim \
     ctags \
     gnome-terminal \
     canberra-gtk* \
@@ -43,16 +42,31 @@ RUN \
     tcl-dev \
     less \
     unzip \
+# for vim build
+    ncurses-dev \
+    lua5.2 \
+    lua5.2-dev \
+    luajit \
+    ruby-dev \
+    apt-transport-https \
     git && \
+# for VSCode
+  curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg && \
+  sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/ && \
+  sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list' && \
+  apt-get update && \
+  apt-get -y --no-install-recommends install code && \
   apt-get autoclean && \
   apt-get autoremove && \
-  rm -rf /var/lib/apt/lists/*
-RUN \
+  rm -rf /var/lib/apt/lists/* && \
+  git clone https://github.com/vim/vim && \
+  cd /vim && ./configure && make && make install && \
+  rm -rf /vim && \
   echo "${TZ}" > /etc/timezone && \
   rm /etc/localtime && \
   ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
-  dpkg-reconfigure -f noninteractive tzdata
-RUN locale-gen ja_JP.UTF-8
+  dpkg-reconfigure -f noninteractive tzdata && \
+  locale-gen ja_JP.UTF-8
 ENV LANG ja_JP.UTF-8
 ENV LANGAGE ja_JP.ja
 ENV LC_ALL ja_JP.UTF-8
