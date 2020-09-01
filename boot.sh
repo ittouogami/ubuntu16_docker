@@ -9,4 +9,5 @@ docker run -ti --rm \
     -v /tmp/.X11-unix/:/tmp/.X11-unix \
     -v $HOME/docker/userhome:$HOME \
     -w $HOME \
+    --shm-size=256m \
     ubuntu16
