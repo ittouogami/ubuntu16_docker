@@ -42,6 +42,8 @@ RUN \
     tcl-dev \
     less \
     unzip \
+    firefox \
+    dialog \
 # for vim build
     ncurses-dev \
     lua5.2 \
