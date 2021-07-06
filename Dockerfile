@@ -1,7 +1,7 @@
 FROM ubuntu:xenial
 LABEL maintainer "ittou <VYG07066@gmail.com>"
 ENV DEBIAN_FRONTEND noninteractive
-
+ENV TZ Asia/Tokyo
 RUN \
   apt-get update && \
   apt-get upgrade -y && \
@@ -60,15 +60,14 @@ RUN \
   apt-get -y --no-install-recommends install code && \
   apt-get autoclean && \
   apt-get autoremove && \
-  rm -rf /var/lib/apt/lists/* && \
   git clone https://github.com/vim/vim && \
   cd /vim && ./configure && make && make install && \
-  rm -rf /vim && \
-  echo "${TZ}" > /etc/timezone && \
   rm /etc/localtime && \
   ln -s /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
   dpkg-reconfigure -f noninteractive tzdata && \
-  locale-gen ja_JP.UTF-8
+  locale-gen ja_JP.UTF-8 && \
+  rm -rf /vim && \
+  rm -rf /var/lib/apt/lists/*
 ENV LANG ja_JP.UTF-8
 ENV LANGAGE ja_JP.ja
 ENV LC_ALL ja_JP.UTF-8
